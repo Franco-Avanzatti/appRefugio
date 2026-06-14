@@ -103,7 +103,7 @@ export default function ConfirmacionScreen() {
           <TouchableOpacity
             style={styles.btnSecondary}
             activeOpacity={0.8}
-            onPress={() => navigation.navigate("Tabs", { screen: "Mis Reservas" })}
+            onPress={() => navigation.navigate("Drawer", { screen: "Mis Reservas" })}
           >
             <Text style={styles.btnSecondaryText}>VER MIS RESERVAS</Text>
           </TouchableOpacity>

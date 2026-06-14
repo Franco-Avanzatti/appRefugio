@@ -1,5 +1,3 @@
-// ReservasScreen.tsx
-
 import { useState, useEffect, useCallback } from "react";
 import {
   View,
@@ -7,14 +5,13 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  ActivityIndicator,
   Alert,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import dayjs from "dayjs";
 import "dayjs/locale/es";
 import AppHeader from "../../components/AppHeader";
-
+import SplashLoader from "../../components/SplashLoader";
 import { colors } from "../../theme/colors";
 import { typography } from "../../theme/typography";
 import { canchaService } from "../../services/canchaService";
@@ -57,6 +54,11 @@ export default function ReservasScreen() {
 
       setCanchas(canchasData);
       setReservas(reservasData);
+
+      // mínimo 1.5 segundos de splash
+      await new Promise((resolve) =>
+        setTimeout(resolve, 1500)
+      );
     } catch {
       Alert.alert("Error", "No se pudieron cargar los datos");
     } finally {
@@ -87,6 +89,16 @@ export default function ReservasScreen() {
     })
     : [];
 
+  const horariosDisponibles = HORARIOS_RESERVA.filter((hora) => {
+    const reservasHorario = reservas.filter(
+      (r) =>
+        r.inicio === hora &&
+        r.estado === "confirmada"
+    );
+
+    return reservasHorario.length < canchas.length;
+  });
+
   const reservar = (cancha: Cancha) => {
     navigation.navigate("Confirmacion", {
       cancha,
@@ -96,11 +108,7 @@ export default function ReservasScreen() {
   };
 
   if (loading) {
-    return (
-      <View style={styles.loader}>
-        <ActivityIndicator color={colors.primary} />
-      </View>
-    );
+    return <SplashLoader />;
   }
 
   return (
@@ -150,7 +158,7 @@ export default function ReservasScreen() {
         </Text>
 
         <View style={styles.horariosContainer}>
-          {HORARIOS_RESERVA.map((hora) => {
+          {horariosDisponibles.map((hora) => {
             const activo = hora === horarioSeleccionado;
 
             return (
@@ -229,8 +237,6 @@ export default function ReservasScreen() {
           </>
         )}
       </View>
-
-
     </ScrollView>
   );
 }
