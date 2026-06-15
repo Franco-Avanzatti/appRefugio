@@ -1,4 +1,8 @@
-export const API_URL = "https://apprefugio.onrender.com/api";
+const isProduction = !__DEV__;
+
+export const API_URL = isProduction
+  ? "https://apprefugio.onrender.com/api"
+  : "http://localhost:3000/api";
 
 export const HORARIOS_RESERVA = [
   "08:00",
@@ -11,6 +15,5 @@ export const HORARIOS_RESERVA = [
   "21:30",
   "23:00",
 ];
-
 
 export const DURACION_TURNO = "1h 30min";
