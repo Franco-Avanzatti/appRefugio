@@ -3,6 +3,7 @@
     "name": "mobile",
     "slug": "mobile",
     "version": "1.0.0",
+    "scheme": "apprefugio",
     "orientation": "portrait",
     "androidStatusBar": {
       "backgroundColor": "#0B0B0B",
@@ -21,7 +22,7 @@
         "monochromeImage": "./assets/android-icon-monochrome.png"
       },
       "predictiveBackGestureEnabled": false,
-      "package": "com.anonymous.mobile"
+      "package": "com.elnuevorefugio.app"
     },
     "web": {
       "favicon": "./assets/favicon.png"
@@ -31,6 +32,11 @@
       "expo-web-browser",
       "expo-font",
       "expo-splash-screen"
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "8180ab90-0c4e-42e5-be45-f53ea9c7e3ef"
+      }
+    }
   }
 }

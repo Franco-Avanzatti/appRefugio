@@ -1,4 +1,4 @@
-export const API_URL = process.env.EXPO_PUBLIC_API_URL || "http://localhost:3000/api";
+export const API_URL = "https://apprefugio.onrender.com/api";
 
 export const HORARIOS_RESERVA = [
   "08:00",
