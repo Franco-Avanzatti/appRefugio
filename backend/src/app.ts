@@ -9,6 +9,7 @@ import { connectDB } from "./config/db";
 import { ENV } from "./config/env";
 import authRoutes from "./routes/auth.routes";
 import canchaRoutes from "./routes/cancha.routes";
+import userRoutes from "./routes/user.routes";
 import reservaRoutes from "./routes/reserva.routes";
 import passport from "./config/passport";
 import { errorHandler } from "./middlewares/error.middleware";
@@ -44,6 +45,7 @@ app.get("/health", (_req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/canchas", canchaRoutes);
 app.use("/api/reservas", reservaRoutes);
+app.use("/api/users", userRoutes);
 
 // 404 handler
 app.use((_req, res) => {
